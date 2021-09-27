@@ -36,5 +36,15 @@ print(examen[1, 2])
 print(examen$note)
 
 # Exercice 3. Graphiques et indicateurs statistiques sur les CPUs
+library(help = "graphics")
 
+graphics::stem(cpus)
+graphics::hist(cpus)
+graphics::boxplot(cpus)
 
+# Contient quelques valeurs atypiques (plus grandes que le reste)
+# Supprimer les valeurs > 200
+cpus2 <- cpus[cpus < 200]
+graphics::hist(cpus2)
+
+# TODO: c)
