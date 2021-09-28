@@ -1,24 +1,39 @@
+# ----------------------------------------------------------------
 # Exercice 1. Installer R et RStudio
+# ----------------------------------------------------------------
 
+# d)
 v1 <- c(1, 8, 9, 4, 5)
 print(v1[3])
 
 v1*2
 print(v1)
 
+# ----------------------------------------------------------------
 # Exercice 2. Inspecter les deux ensembles de données
+# ----------------------------------------------------------------
 
+# a)
 setwd("/Users/Valentin/code/heig/pst/TP1")
 cpus <- scan("cpus.txt")
 
+# b)
 print(cpus)
+
+# c)
 print(cpus[9])
+
+# d)
 print(cpus[3:15])
+
+# e)
 print(cpus[cpus > 186])
 
+# f)
 examen <- read.table("examen.txt", header = TRUE)
 ?read.table # aide sur la commande
 
+# g)
 class(cpus)
 class(examen)
 mode(cpus)
@@ -29,22 +44,86 @@ str(examen)
 # groupe est un vecteur de character et contient les groupes
 # note est un vecteur de numeric et contient les notes
 
+# h)
 print(examen[1:3,])
 print(examen[2,])
 print(examen[3, 1])
 print(examen[1, 2])
 print(examen$note)
 
+# ----------------------------------------------------------------
 # Exercice 3. Graphiques et indicateurs statistiques sur les CPUs
+# ----------------------------------------------------------------
+
+# a)
 library(help = "graphics")
 
 graphics::stem(cpus)
 graphics::hist(cpus)
 graphics::boxplot(cpus)
 
-# Contient quelques valeurs atypiques (plus grandes que le reste)
-# Supprimer les valeurs > 200
+# b)
+# Distribution des valeurs unimodale et asymétrique. Très étalée sur la droite
+# à cause des valeurs atypiques, bien plus grande que le reste des valeurs.
+# Supprimer les valeurs plus grandes que le seuil 200
 cpus2 <- cpus[cpus < 200]
 graphics::hist(cpus2)
 
-# TODO: c)
+# c)
+cat("Moyenne cpus:", mean(cpus))
+cat("Médiane cpus:", median(cpus))
+
+cat("Moyenne cpus2:", mean(cpus2))
+cat("Médiane cpus2:", median(cpus2))
+
+# La fonction summary propose différents indicateurs comme la moyenne ou les
+# quartiles pour les données entrées en paramètre.
+summary(cpus)
+summary(cpus2)
+
+# La moyenne est beaucoup plus impactée que la médiane par les extremums.
+# La médiane représente donc ici mieux les données dans les vecteurs contenant
+# encore les valeurs atypiques. Pour les autres vecteurs, les résultats sont
+# quasiment similaires entre la moyenne et la médiane.
+
+# d)
+# (1) 7 en moins à chaque valeur:
+# Intuition: moins 7 à la médiane et à la moyenne
+print(mean(cpus - 7))
+print(median(cpus - 7))
+
+# (2) divise par 3 chaque valeur:
+# Intuition: médiane et moyenne divisées par 3
+print(mean(cpus / 3))
+print(median(cpus / 3))
+
+# (3) ajoute un processeur avec comme performance 40:
+# Intuition: médiane changée par la valeur ajoutée et moyenne un peu plus basse
+cpusWith40 <- c(cpus, 40)
+print(mean(cpusWith40))
+print(median(cpusWith40))
+
+# e)
+print(sd(cpus))
+print(sd(cpus2))
+
+# L'écart-type n'est pas un indicateur très robuste. Il est fortement impacté
+# par les valeurs extrêmes, comme l'exemple ci-dessus le montre.
+
+# ----------------------------------------------------------------
+# Exercice 4. Différences à l'examen entre groupes
+# ----------------------------------------------------------------
+
+# a)
+notesA = examen[examen$groupe == "A", 2]
+notesB = examen[examen$groupe == "B", 2]
+
+graphics::boxplot(notesA)
+graphics::boxplot(notesB)
+
+# b) TODO
+
+# c) TODO
+
+# d) TODO
+
