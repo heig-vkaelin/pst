@@ -6,7 +6,7 @@
 v1 <- c(1, 8, 9, 4, 5)
 print(v1[3])
 
-v1*2
+v1 * 2
 print(v1)
 
 # ----------------------------------------------------------------
@@ -45,8 +45,8 @@ str(examen)
 # note est un vecteur de numeric et contient les notes
 
 # h)
-print(examen[1:3,])
-print(examen[2,])
+print(examen[1:3, ])
+print(examen[2, ])
 print(examen[3, 1])
 print(examen[1, 2])
 print(examen$note)
@@ -60,7 +60,7 @@ library(help = "graphics")
 
 graphics::stem(cpus)
 graphics::hist(cpus)
-graphics::boxplot(cpus)
+graphics::boxplot(cpus, main="Boxplot des CPUS")
 
 # b)
 # Distribution des valeurs unimodale et asymétrique. Très étalée sur la droite
@@ -118,12 +118,47 @@ print(sd(cpus2))
 notesA = examen[examen$groupe == "A", 2]
 notesB = examen[examen$groupe == "B", 2]
 
-graphics::boxplot(notesA)
-graphics::boxplot(notesB)
+graphics::boxplot(
+  notesA,
+  ylab="note",
+  main="Notes du groupe A",
+  ylim = c(1, 6)
+)
+graphics::boxplot(
+  notesB,
+  ylab="note",
+  main="Notes du groupe B",
+  ylim = c(1, 6)
+)
 
-# b) TODO
+summary(notesA)
+summary(notesB)
 
-# c) TODO
+# b)
+# La médiane des notes du groupe A se trouve vers 3.5 et celle du groupe B
+# vers 4.5. La meilleure note de chaque groupe est également très espacée.
+# Celle du groupe A se trouve vers 4.5 et celle du groupe B vers 6.
 
-# d) TODO
+# Pour la dispersion, elles sont assez semblabls car on observe que les tailles
+# des deux boxplots entre le 1er et le 4ème quartiles sont plus ou moins
+# similaires.
+# Cependant, le 50% du corps de la boîte du groupe A est plus grand que celui
+# du groupe B. Ce qui signifie que les notes du groupe A sont plus rapprochées
+# au alentours de la médiane.
 
+# c)
+cat("Ecart-type notes du groupe A:", sd(notesA))
+cat("Ecart-type notes du groupe B:", sd(notesB))
+
+# Les deux écarts-types sont assez similaires entre les deux groupes.
+# Cela implique que la différence de dispersion entre les deux groupes n'est
+# pas énorme. La dispersion des notes du groupe A est donc très légèrement plus
+# grande que celle du groupe B.
+
+# d)
+# Le groupe B a mieux réussi l'examen que le groupe A. De plus, les notes des 
+# deux groupes sont plus ou moins aussi dispersées les unes que les autres.
+# On peut finir par dire que les extremums de chaque groupe sont vraiment les 
+# valeurs qui changent le plus.
+# En effet, la note minimale du groupe A est beaucoup plus basse que celle du
+# groupe B et la note maximale de B est bien plus haute que celle de A.
