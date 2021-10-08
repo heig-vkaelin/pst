@@ -1,7 +1,51 @@
+setwd("/Users/Valentin/code/heig/pst/Exercices")
+
+# ----------------------------------------------------------------
+# Exercice 2
+# ----------------------------------------------------------------
+ch_mg <- scan("DonneesExos/carbon.txt")
+
+# a)
+# Attributs de seq: from, to, by
+table(cut(ch_mg, seq(100, 600, 50)))
+
+# Autre option de faire une table de fréquence via un hist + b)
+h <- hist(ch_mg, breaks = seq(100, 600, 50))
+h$breaks
+h$counts
+
+
+# ----------------------------------------------------------------
+# Exercice 6
+# ----------------------------------------------------------------
+sodium <- read.table("DonneesExos/sodium.txt", header = TRUE)
+
+# a)
+summary(sodium)
+
+sd(sodium$beef, na.rm = TRUE)
+sd(sodium$meat, na.rm = TRUE)
+sd(sodium$poultry, na.rm = TRUE)
+
+# Plus de sel dans le poulet que dans la viande et le boeuf.
+
+# b)
+boxplot(
+  sodium$beef,
+  sodium$meat,
+  sodium$poultry,
+  names = c("Boeuf", "Viande mélangée", "Poulet"),
+  main = "Sel dans les types d'Hot-dog"
+)
+
+# c)
+# Boîtes assez superposées, étalement. Incertitude élevée dans chaque catégorie
+# vu la taille interquartile.
+
+
 # ----------------------------------------------------------------
 # Exercice 10
 # ----------------------------------------------------------------
-setwd("/Users/Valentin/code/heig/pst/Exercices")
 trees <- read.table("DonneesExos/trees.txt", header = TRUE)
 
 # a)
