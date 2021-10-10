@@ -157,6 +157,8 @@ cat("Ecart-type notes du groupe B:", sd(notesB))
 # Cela explique que la différence de dispersion entre les deux groupes n'est
 # pas énorme. La dispersion des notes du groupe A est donc très légèrement plus
 # grande que celle du groupe B.
+# Les deux écarts-types sont en dessous de 1, ce qui signifie que les notes des
+# deux groupes sont relativement groupées (à moins d'un point près sur la note).
 
 # d)
 # Les conclusions sont les mêmes pour les points b) et c): la dispersion est
