@@ -30,7 +30,4 @@ np = 0.1 # la proba que la communication échoue
 dgeom(nx, np)
 
 # c)
-
-# 0.045, voir iPad
-
-
+choose(9, 3) * (1/10)^4 * (9/10)^6 # voir iPad pour + d'infos
